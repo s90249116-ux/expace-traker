@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Expense Tracker Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- ==X======================= -->
+<!-- Sidebar -->
+<!-- ========================= -->
+
+<div class="sidebar">
+
+<h2>
+🤑ExpensePro
+</h2>
+
+<ul>
+
+<li>
+<i class="fa fa-house"></i>
+Dashboard
+</li>
+
+
+<li>
+<i class="fa fa-wallet"></i>
+Transactions
+</li>
+
+
+<li>
+<i class="fa fa-chart-pie"></i>
+Analytics
+</li>
+
+
+<li>
+<i class="fa fa-bullseye"></i>
+Budget
+</li>
+
+
+<li>
+<i class="fa fa-file"></i>
+Reports
+</li>
+
+
+<li>
+<i class="fa fa-gear"></i>
+Settings
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<div class="main">
+
+
+<!-- Top Header -->
+
+<div class="topbar">
+
+
+<div>
+
+<h1>
+Executive Dashboard
+</h1>
+
+<p>
+Manage your money smartly
+</p>
+
+</div>
+
+
+<div class="top-actions">
+
+
+<button id="notificationBtn">
+
+🔔
+
+</button>
+
+
+<button id="themeBtn">
+
+🌙
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- User Profile -->
+
+
+<div class="profile-card">
+
+
+<div class="profile-img">
+
+👤
+
+</div>
+
+
+<div>
+
+<h3>
+Surbhi
+</h3>
+
+<p>
+Premium User
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- Date Widget -->
+
+
+<div class="date-widget">
+
+🌤️
+
+<span id="dateTime">
+
+Loading...
+
+</span>
+
+
+</div>
+
+
+
+<div class="cards">
+
+
+<div class="card balance">
+
+
+<h3>
+Total Balance
+</h3>
+
+
+<h2 id="balance">
+$0
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="card income">
+
+
+<h3>
+Total Income
+</h3>
+
+
+<h2 id="income">
+$0
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="card expense">
+
+
+<h3>
+Total Expense
+</h3>
+
+
+<h2 id="expense">
+$0
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="card saving">
+
+
+<h3>
+Savings
+</h3>
+
+
+<h2 id="saving">
+$0
+</h2>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- Income Expense Mini Cards -->
+
+
+<div class="mini-cards">
+
+
+<div>
+
+<p>
+Monthly Income
+</p>
+
+<h2>
+$0
+</h2>
+
+</div>
+
+
+
+<div>
+
+<p>
+Monthly Expense
+</p>
+
+<h2>
+$0
+</h2>
+
+</div>
+
+
+
+<div>
+
+<p>
+Cash Flow
+</p>
+
+<h2>
+Positive
+</h2>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ========================= -->
+<!-- Quick Actions -->
+<!-- ========================= -->
+
+
+<div class="quick-card">
+
+
+<h2>
+🔥 Quick Actions
+</h2>
+
+
+<div class="quick-buttons">
+
+
+<button id="incomeBtn">
+
+💰 Add Income
+
+</button>
+
+
+
+<button id="expenseBtn">
+
+💸 Add Expense
+
+</button>
+
+
+
+<button id="pdfBtn">
+
+📄 Export PDF
+
+</button>
+
+
+
+<button id="excelBtn">
+
+📊 Export Excel
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ========================= -->
+<!-- Budget Progress -->
+<!-- ========================= -->
+
+
+<div class="budget-card">
+
+
+<h2>
+🎯 Monthly Budget Progress
+</h2>
+
+
+
+<div class="budget-info">
+
+
+<span>
+Spent
+</span>
+
+
+<span id="budgetPercent">
+0%
+</span>
+
+
+</div>
+
+
+
+
+<div class="progress">
+
+
+<div 
+class="progress-bar"
+id="progressBar">
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="budget-details">
+
+
+<p>
+Budget:
+<b>
+$5000
+</b>
+</p>
+
+
+<p>
+Spent:
+<b id="spentAmount">
+$0
+</b>
+</p>,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+
+<p>
+Remaining:
+<b id="remainingAmount">
+$5000
+</b>
+</p>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ========================= -->
+<!-- Main Grid Start -->
+<!-- ========================= -->
+
+
+<div class="grid">
+
+
+<div class="left">
+
+
+<h2>
+➕ Add Transaction
+</h2>
+
+
+
+<form id="form">
+
+
+<select id="type">
+
+
+<option value="income">
+Income
+</option>
+
+
+<option value="expense">
+Expense
+</option>
+
+
+</select>
+
+
+
+
+
+<input 
+type="text"
+id="title"
+placeholder="Transaction Title"
+required>
+
+
+
+
+
+<input
+type="number"
+id="amount"
+placeholder="Amount"
+required>
+
+
+
+
+
+<select id="category">
+
+
+<option>
+Food
+</option>
+
+
+<option>
+Shopping
+</option>
+
+
+<option>
+Travel
+</option>
+
+
+<option>
+Salary
+</option>
+
+
+<option>
+Health
+</option>
+
+
+<option>
+Other
+</option>
+
+
+</select>
+
+
+
+
+
+<input 
+type="date"
+id="date">
+
+
+
+
+
+<textarea
+id="note"
+placeholder="Notes">
+
+</textarea>
+
+
+
+<button>
+
+Add Transaction
+
+</button>
+
+
+
+</form>
+
+
+
+</div>
+
+<!-- ========================= -->
+<!-- Analytics Section -->
+<!-- ========================= -->
+
+
+<div class="analytics-grid">
+
+
+<div class="chart-card">
+
+
+<h2>
+📊 Spending Analytics
+</h2>
+
+
+<canvas id="pieChart"></canvas>
+
+
+</div>
+
+
+
+<div class="chart-card">
+
+
+<h2>
+📈 Weekly Spending
+</h2>
+
+
+<canvas id="weeklyChart"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ========================= -->
+<!-- Activity + Goals -->
+<!-- ========================= -->
+
+
+<div class="extra-grid">
+
+
+
+<div class="timeline-card">
+
+
+<h2>
+📅 Recent Activity
+</h2>
+
+
+
+<div id="timeline" class="timeline">
+
+
+<p class="empty">
+
+No recent activity
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="goal-card">
+
+
+<h2>
+🎯 Financial Goals
+</h2>
+
+
+
+<h3>
+Buy New Laptop
+</h3>
+
+
+
+<div class="goal-progress">
+
+
+<div id="goalBar">
+
+</div>
+
+
+</div>
+
+
+
+<div class="goal-info">
+
+
+<span id="goalSaved">
+
+$0
+
+</span>
+
+
+<span>
+
+$5000
+
+</span>
+
+
+</div>
+
+
+
+<button id="addGoalMoney">
+
+➕ Add Savings
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="ai-chat">
+
+    <h2>🤖 AI Chat</h2>
+
+    <div id="chatBox"></div>
+
+    <input
+        type="text"
+        id="userQuestion"
+        placeholder="Ask anything..."
+    >
+
+    <button id="sendBtn">
+        Send
+    </button>
+
+</div>
+
+
+
+
+<!-- ========================= -->
+<!-- Top Spending Categories -->
+<!-- ========================= -->
+
+
+<div class="category-card">
+
+
+<h2>
+🏆 Top Spending Categories
+</h2>
+
+
+
+<div class="category-list">
+
+
+<div class="category-item">
+
+
+<span>
+🍔 Food
+</span>
+
+
+<b>
+$0
+</b>
+
+
+</div>
+
+
+
+
+<div class="category-item">
+
+
+<span>
+🛒 Shopping
+</span>
+
+
+<b>
+$0
+</b>
+
+
+</div>
+
+
+
+
+
+<div class="category-item">
+
+
+<span>
+🚗 Travel
+</span>
+
+
+<b>
+$0
+</b>
+
+
+</div>
+
+
+
+
+
+<div class="category-item">
+
+
+<span>
+💊 Health
+</span>
+
+
+<b>
+$0
+</b>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- Transactions -->
+<!-- ========================= -->
+
+
+<div class="transactions">
+
+
+<div class="head">
+
+
+<h2>
+💳 Recent Transactions
+</h2>
+
+
+
+
+<input
+type="text"
+id="search"
+placeholder="Search transaction">
+
+
+</div>
+
+
+
+
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+Type
+</th>
+
+
+<th>
+Title
+</th>
+
+
+<th>
+Amount
+</th>
+
+
+<th>
+Category
+</th>
+
+
+<th>
+Date
+</th>
+
+
+<th>
+Action
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody id="list">
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- Footer -->
+<!-- ========================= -->
+
+
+<footer>
+
+
+<p>
+
+© 2026 ExpensePro | Smart Money Management
+
+</p>
+
+
+</footer>
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+
+</html>
